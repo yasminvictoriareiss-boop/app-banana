@@ -1,41 +1,121 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-PT">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verificação de Candidatura</title>
-    <!-- Vincula o arquivo CSS externo -->
+    <title>Candidatura // Laboratório dos Minions</title>
+    
+    <!-- Fontes Estilizadas Inspiradas no Cartaz Oficial -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Fredoka:wght@600;700&family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="container">
-        <h2>Verificação de Elegibilidade para Vaga</h2>
-        
-        <form id="formCandidato">
-            <div class="input-group">
-                <label for="nome">Nome Completo:</label>
-                <input type="text" id="nome" required placeholder="Digite seu nome">
+    <!-- CANVAS INTERATIVO PARA OS EMOJIS DE BANANA -->
+    <canvas id="bananaCanvas"></canvas>
+
+    <!-- PERSONAGEM MINION (BOB) QUE SEGUE O CURSOR E SOLTA BANANAS -->
+    <div class="minion-follower" id="minionFollower">
+        <!-- Corpo Amarelo Recortado -->
+        <div class="minion-body">
+            
+            <!-- Óculos Prateados com Olhos Heterocromáticos (Estilo Bob) -->
+            <div class="goggles">
+                <div class="strap strap-left"></div>
+                <div class="eye eye-left">
+                    <div class="pupil brown" id="pupilL"></div>
+                </div>
+                <div class="eye eye-right">
+                    <div class="pupil green" id="pupilR"></div>
+                </div>
+                <div class="strap strap-right"></div>
             </div>
 
-            <div class="input-group">
-                <label for="idade">Idade (anos):</label>
-                <input type="number" id="idade" min="0" required placeholder="Ex: 20">
+            <!-- Sorriso Bobo -->
+            <div class="minion-mouth"></div>
+
+            <!-- Macacão Azul Jeans com Suspensórios -->
+            <div class="overalls">
+                <div class="strap-j l-strap"></div>
+                <div class="strap-j r-strap"></div>
+                <div class="front-pocket">
+                    <div class="gru-logo">G</div>
+                </div>
             </div>
 
-            <div class="input-group">
-                <label for="altura">Altura (metros):</label>
-                <input type="number" id="altura" step="0.01" min="0" required placeholder="Ex: 1.75">
+            <!-- Luvas Pretas -->
+            <div class="hand hand-left"></div>
+            <div class="hand hand-right">
+                <!-- Ursinho Tim na Mão -->
+                <div class="teddy-tim"></div>
             </div>
 
-            <button type="button" onclick="verificarElegibilidade()">Verificar</button>
-        </form>
+            <!-- Sapatos Pretos -->
+            <div class="feet">
+                <div class="foot foot-l"></div>
+                <div class="foot foot-r"></div>
+            </div>
+        </div>
 
-        <!-- Local onde a mensagem de resultado será exibida -->
-        <div id="resultado" class="resultado"></div>
+        <div class="minion-speech" id="minionSpeech">BANANA! 🍌</div>
     </div>
 
-    <!-- Vincula o arquivo JavaScript externo -->
+    <!-- CARTÃO PRINCIPAL DE CANDIDATURA DOS MINIONS -->
+    <main class="minion-card">
+        <header>
+            <div class="brand-title">
+                <span class="yellow-txt">MINIONS</span>
+                <span class="blue-txt">&amp; GRU</span>
+            </div>
+            <h1>RECRUTAMENTO DE AJUDANTES!</h1>
+            <p>Preenche o formulário abaixo para trabalhares no laboratório secreto!</p>
+        </header>
+
+        <form id="minionForm">
+            <div class="field">
+                <label for="nome">✍️ NOME DO CANDIDATO</label>
+                <input type="text" id="nome" placeholder="O teu nome ou alcunha..." autocomplete="off" required>
+            </div>
+
+            <div class="field-group">
+                <div class="field">
+                    <label for="idade">🎂 IDADE</label>
+                    <input type="number" id="idade" placeholder="Ex: 19" min="0" required>
+                </div>
+
+                <div class="field">
+                    <label for="altura">📏 ALTURA (m)</label>
+                    <input type="number" id="altura" step="0.01" placeholder="Ex: 1.75" min="0" required>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-minion">
+                <span>ENVIAR CANDIDATURA!</span>
+                <span class="banana-icon">🍌</span>
+            </button>
+        </form>
+
+        <footer>
+            🍌 Requisito do Laboratório: Altura ≥ 1.70m e Idade ≥ 18 Anos
+        </footer>
+    </main>
+
+    <!-- POP-UP / MODAL DE RESULTADO -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-card" id="modalCard">
+            <div class="minion-badge">🍌</div>
+            <div class="status-stamp" id="statusStamp">STATUS</div>
+            <h2 id="candidateName">NOME</h2>
+            <p id="resMsg">Mensagem...</p>
+
+            <button class="btn-close" onclick="fecharModal()">POOPAYE! (CONCLUIR) ➔</button>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
+<!-- Alteração do arquivo HTML -->
